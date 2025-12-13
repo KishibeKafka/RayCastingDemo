@@ -5,7 +5,7 @@ bool isInValidArea(Vector2 pos) {
            (pos.y >= MAP_OP_Y && pos.y <= MAP_OP_Y+MAP_HEIGHT);
 }
 
-void CreateWall(SDL_Event& event, std::vector<Wall2D>& walls, SDL_Renderer* renderer, SDL_Color color){
+void CreateWall(SDL_Event& event, std::vector<Wall2D>& walls, SDL_Renderer* renderer, SDL_Color color, SDL_Surface* scene_surf){
     static bool isMouseDown = false;
     static Vector2 wallStartPos = {MAP_OP_X, MAP_OP_Y};
 
@@ -28,6 +28,12 @@ void CreateWall(SDL_Event& event, std::vector<Wall2D>& walls, SDL_Renderer* rend
         if (isInValidArea(end) && (wallStartPos.x != end.x || wallStartPos.y != end.y)) {
             // 创建墙体并加入列表
             walls.emplace_back(wallStartPos, end, renderer, color);
+            int x = wallStartPos.x;
+            int y = wallStartPos.y;
+            int w = end.x - wallStartPos.x;
+            int h = end.y - wallStartPos.y;
+            SDL_Rect wall_rect = {x,y,w,h};
+            SDL_FillRect(scene_surf, &wall_rect, SDL_MapRGBA(scene_surf->format, 0, 0, 255, 255));
         }
         // 重置状态
         isMouseDown = false;

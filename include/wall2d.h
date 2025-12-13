@@ -19,4 +19,4 @@ class Wall2D{
     void show();
 };
 
-void CreateWall(SDL_Event& event, std::vector<Wall2D>& walls, SDL_Renderer* renderer, SDL_Color color);
+void CreateWall(SDL_Event& event, std::vector<Wall2D>& walls, SDL_Renderer* renderer, SDL_Color color, SDL_Surface* scene_surf);

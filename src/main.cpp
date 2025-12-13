@@ -35,13 +35,20 @@ int main(){
         SDL_Quit();
         return 1;
     }
+    // Surface
+    SDL_Surface* scene_surf = SDL_CreateRGBSurface(0, SCREEN_WIDTH, SCREEN_HEIGHT, 32,
+        0x00FF0000, // R掩码（RGBA32）
+        0x0000FF00, // G掩码
+        0x000000FF, // B掩码
+        0xFF000000  // A掩码
+    );
 
     bool isRunning = true;
     SDL_Event event;
     SDL_Color red = {255, 0, 0, 255};
     SDL_Color blue = {0, 0, 255, 255};
     SDL_Color white = {255, 255, 255, 255};
-    Player2D player({MAP_OP_X + MAP_WIDTH/2, MAP_OP_Y + MAP_HEIGHT/2}, renderer, red);
+    Player2D player({MAP_OP_X + MAP_WIDTH/2, MAP_OP_Y + MAP_HEIGHT/2}, renderer, red, scene_surf);
     vector<Wall2D> walls;
     while (isRunning) {
         while (SDL_PollEvent(&event)) {
@@ -53,18 +60,22 @@ int main(){
                     break;
             }
             player.handleInput(event);
-            CreateWall(event, walls, renderer, blue);
+            CreateWall(event, walls, renderer, blue, scene_surf);
         }
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
+
+        
+        for (auto& wall : walls)
+        wall.show();
+    
+        player.show();
+        
+        player.ray_casting();
+        
         // 绘制2d地图和3d场景的边界线
         drawFillRect(renderer, MAP_OP_X-5, 0, 10, MAP_HEIGHT, white);
-
-        for (auto& wall : walls)
-            wall.show();
-
-        player.show();
-
+        
         SDL_RenderPresent(renderer);
         SDL_Delay(16);
     }
