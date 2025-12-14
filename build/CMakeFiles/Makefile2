@@ -63,42 +63,101 @@ CMAKE_BINARY_DIR = /root/RayCastingDemo/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/demo.dir/all
+all: demo2d/all
+all: demo3d/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: demo2d/preinstall
+preinstall: demo3d/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/demo.dir/clean
+clean: demo2d/clean
+clean: demo3d/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/demo.dir
+# Directory level rules for directory demo2d
+
+# Recursive "all" directory target.
+demo2d/all: demo2d/CMakeFiles/demo2d.dir/all
+.PHONY : demo2d/all
+
+# Recursive "preinstall" directory target.
+demo2d/preinstall:
+.PHONY : demo2d/preinstall
+
+# Recursive "clean" directory target.
+demo2d/clean: demo2d/CMakeFiles/demo2d.dir/clean
+.PHONY : demo2d/clean
+
+#=============================================================================
+# Directory level rules for directory demo3d
+
+# Recursive "all" directory target.
+demo3d/all: demo3d/CMakeFiles/demo3d.dir/all
+.PHONY : demo3d/all
+
+# Recursive "preinstall" directory target.
+demo3d/preinstall:
+.PHONY : demo3d/preinstall
+
+# Recursive "clean" directory target.
+demo3d/clean: demo3d/CMakeFiles/demo3d.dir/clean
+.PHONY : demo3d/clean
+
+#=============================================================================
+# Target rules for target demo2d/CMakeFiles/demo2d.dir
 
 # All Build rule for target.
-CMakeFiles/demo.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/RayCastingDemo/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target demo"
-.PHONY : CMakeFiles/demo.dir/all
+demo2d/CMakeFiles/demo2d.dir/all:
+	$(MAKE) $(MAKESILENT) -f demo2d/CMakeFiles/demo2d.dir/build.make demo2d/CMakeFiles/demo2d.dir/depend
+	$(MAKE) $(MAKESILENT) -f demo2d/CMakeFiles/demo2d.dir/build.make demo2d/CMakeFiles/demo2d.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/RayCastingDemo/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target demo2d"
+.PHONY : demo2d/CMakeFiles/demo2d.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/demo.dir/rule: cmake_check_build_system
+demo2d/CMakeFiles/demo2d.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/RayCastingDemo/build/CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/demo.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 demo2d/CMakeFiles/demo2d.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/RayCastingDemo/build/CMakeFiles 0
-.PHONY : CMakeFiles/demo.dir/rule
+.PHONY : demo2d/CMakeFiles/demo2d.dir/rule
 
 # Convenience name for target.
-demo: CMakeFiles/demo.dir/rule
-.PHONY : demo
+demo2d: demo2d/CMakeFiles/demo2d.dir/rule
+.PHONY : demo2d
 
 # clean rule for target.
-CMakeFiles/demo.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/clean
-.PHONY : CMakeFiles/demo.dir/clean
+demo2d/CMakeFiles/demo2d.dir/clean:
+	$(MAKE) $(MAKESILENT) -f demo2d/CMakeFiles/demo2d.dir/build.make demo2d/CMakeFiles/demo2d.dir/clean
+.PHONY : demo2d/CMakeFiles/demo2d.dir/clean
+
+#=============================================================================
+# Target rules for target demo3d/CMakeFiles/demo3d.dir
+
+# All Build rule for target.
+demo3d/CMakeFiles/demo3d.dir/all:
+	$(MAKE) $(MAKESILENT) -f demo3d/CMakeFiles/demo3d.dir/build.make demo3d/CMakeFiles/demo3d.dir/depend
+	$(MAKE) $(MAKESILENT) -f demo3d/CMakeFiles/demo3d.dir/build.make demo3d/CMakeFiles/demo3d.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/RayCastingDemo/build/CMakeFiles --progress-num=7,8 "Built target demo3d"
+.PHONY : demo3d/CMakeFiles/demo3d.dir/all
+
+# Build rule for subdir invocation for target.
+demo3d/CMakeFiles/demo3d.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/RayCastingDemo/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 demo3d/CMakeFiles/demo3d.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/RayCastingDemo/build/CMakeFiles 0
+.PHONY : demo3d/CMakeFiles/demo3d.dir/rule
+
+# Convenience name for target.
+demo3d: demo3d/CMakeFiles/demo3d.dir/rule
+.PHONY : demo3d
+
+# clean rule for target.
+demo3d/CMakeFiles/demo3d.dir/clean:
+	$(MAKE) $(MAKESILENT) -f demo3d/CMakeFiles/demo3d.dir/build.make demo3d/CMakeFiles/demo3d.dir/clean
+.PHONY : demo3d/CMakeFiles/demo3d.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
