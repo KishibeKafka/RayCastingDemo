@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/RayCastingDemo.dir/src/main.cpp.o -o RayCastingDemo  /usr/lib/x86_64-linux-gnu/libSDL2.so 

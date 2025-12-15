@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/demo.dir/src/main.cpp.o CMakeFiles/demo.dir/src/player2d.cpp.o CMakeFiles/demo.dir/src/wall2d.cpp.o CMakeFiles/demo.dir/src/vector2.cpp.o CMakeFiles/demo.dir/src/draw.cpp.o -o demo  /usr/lib/x86_64-linux-gnu/libSDL2.so 

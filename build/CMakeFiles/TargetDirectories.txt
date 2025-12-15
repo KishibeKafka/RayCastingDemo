@@ -1,8 +1,0 @@
-/root/RayCastingDemo/build/CMakeFiles/edit_cache.dir
-/root/RayCastingDemo/build/CMakeFiles/rebuild_cache.dir
-/root/RayCastingDemo/build/demo2d/CMakeFiles/demo2d.dir
-/root/RayCastingDemo/build/demo2d/CMakeFiles/edit_cache.dir
-/root/RayCastingDemo/build/demo2d/CMakeFiles/rebuild_cache.dir
-/root/RayCastingDemo/build/demo3d/CMakeFiles/demo3d.dir
-/root/RayCastingDemo/build/demo3d/CMakeFiles/edit_cache.dir
-/root/RayCastingDemo/build/demo3d/CMakeFiles/rebuild_cache.dir
