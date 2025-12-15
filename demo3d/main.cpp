@@ -50,14 +50,6 @@ int main(){
     float planeX[3] = {0, 0, 80}; // 相机平面垂直于dir
     float planeY[3] = {0, 60, 0}; // 其X分量和Y分量也互相垂直
 
-    // float pos[3] = {0, 100, 125};
-    // float dir[3] = {0.9699f, 0.0f, -0.2425f};
-    // float planeX[3] = {19.40f, 0.0f, 77.61f};
-    // float planeY[3] = {0.0f, 60.0f, 0.0f};
-
-
-    
-    
     RayCasting(pos, dir, planeX, planeY, RGBAs, Pixels);
     free(Voxels);
     
@@ -98,8 +90,8 @@ int main(){
     }
     SDL_Texture *texture = SDL_CreateTexture(
         renderer,
-        SDL_PIXELFORMAT_RGBA8888,        // 像素格式（匹配SDL的RGBA）
-        SDL_TEXTUREACCESS_STREAMING,     // 流式纹理（可动态更新数据）
+        SDL_PIXELFORMAT_ARGB8888,
+        SDL_TEXTUREACCESS_TARGET,
         SCREEN_WIDTH,
         SCREEN_HEIGHT
     );
@@ -277,7 +269,7 @@ void RayCasting(float *pos, float *dir, float *planeX, float *planeY, float *RGB
             Vector3Copy(rayPos, temp);
             Vector3Scale(temp, planeY, mapY);
             Vector3Add(rayPos, rayPos, temp);
-            // Vector3Add(rayPos, rayPos, dir);
+            Vector3Add(rayPos, rayPos, dir);
             Vector3Add(rayPos, rayPos, pos);
             // 从前向后
             float samplePos[3];
@@ -285,7 +277,11 @@ void RayCasting(float *pos, float *dir, float *planeX, float *planeY, float *RGB
             float underColor[4] = {0, 0, 0, 0}; // 初始颜色
             Vector3Normalize(step, dir);
             // Vector3Scale(step, 0.5);
-            Vector3Add(samplePos, rayPos, step);
+            int t = 0;
+            while(!PosValid(samplePos[0], samplePos[1], samplePos[2]) && t < 100){
+                Vector3Add(samplePos, rayPos, step);
+                t++;
+            }
             while (PosValid(samplePos[0], samplePos[1], samplePos[2])){
                 // 三线性插值
                 float rgba[4];
@@ -369,7 +365,7 @@ void TriInterpolation(float *rgba, float *pos, float *RGBAs){
 /**
 * @brief 像素格式转换成sdl texture支持的
 * @param sdl_pixels sdl像素指针
-* @param Pixels 原像素指针
+* @param Pixels 原像素指针rgba
 **/
 void TransPixels(Uint8 *sdl_pixels, float *Pixels){
     for (int y_sdl = 0; y_sdl < SCREEN_HEIGHT; y_sdl++) {
@@ -382,9 +378,9 @@ void TransPixels(Uint8 *sdl_pixels, float *Pixels){
             float b = Pixels[idx_src+2];
             float a = Pixels[idx_src+3];
     
-            sdl_pixels[idx_sdl]     = (Uint8)(fminf(fmaxf(r, 0.0f), 1.0f) * 255.0f);
+            sdl_pixels[idx_sdl]     = (Uint8)(fminf(fmaxf(b, 0.0f), 1.0f) * 255.0f);
             sdl_pixels[idx_sdl + 1] = (Uint8)(fminf(fmaxf(g, 0.0f), 1.0f) * 255.0f);
-            sdl_pixels[idx_sdl + 2] = (Uint8)(fminf(fmaxf(b, 0.0f), 1.0f) * 255.0f);
+            sdl_pixels[idx_sdl + 2] = (Uint8)(fminf(fmaxf(r, 0.0f), 1.0f) * 255.0f);
             sdl_pixels[idx_sdl + 3] = (Uint8)(fminf(fmaxf(a, 0.0f), 1.0f) * 255.0f);
         }
     }
